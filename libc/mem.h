@@ -3,7 +3,10 @@
 
 #include "../cpu/types.h"
 
-void memcpy(char *dst, char *src,int n);
+void *memcpy(char *dst, const char *src, int n);
 void *memset(void *s, int c, unsigned int len);
+void *malloc(unsigned int size);
+void free(void *ptr);
 
-#endif
+#endif // LIBC_MEM_H
+

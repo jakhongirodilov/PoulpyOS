@@ -4,7 +4,8 @@
 
 # Set source dirs
 ASM_SOURCES = $(wildcard boot/*.asm)
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c bin/*.c) 
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c bin/*.c util/*.c)
+
 HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h libc/*.h bin/*.h)
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 
@@ -12,7 +13,8 @@ OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 CC = /usr/local/i386elfgcc/bin/i386-elf-gcc
 LD = /usr/local/i386elfgcc/bin/i386-elf-ld
 GDB = /usr/local/i386elfgcc/bin/i386-elf-gdb
-CFLAGS = -Wall -g -std=c99 
+CFLAGS = -Wall -g -std=c99 -ffreestanding -Iinclude -Iutil
+
 
 #Set names
 IMG=poulpyOS.img
