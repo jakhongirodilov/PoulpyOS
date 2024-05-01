@@ -34,6 +34,7 @@ void memory_management_demo() {
 
 void poulpy() {
     isr_install();
+    init_timer(20);
     clearScreen();
     
     // memory_management_demo();  // Run the memory management demo

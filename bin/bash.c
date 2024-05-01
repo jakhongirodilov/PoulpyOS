@@ -3,7 +3,11 @@
 #include "../drivers/screen.h"
 #include "../libc/mem.h"
 #include "../cpu/types.h"
+#include "../cpu/timer.h" 
 #include "../libc/string.h"
+#include "../util/util.h"
+#include <stddef.h>
+
 
 void printCLI(const char *cmd){
 
@@ -106,33 +110,65 @@ void printLyricText(const char *text){
     }
 }
 
-void runCommand(char *cmd){
+void echo_command(char *input) {
+    // Find the first space to skip the "echo" command itself
+    char *text = strchr(input, ' ');
+    if (text) {
+        // Move past the space to print the remaining text
+        text++;  // Increment to start from next character after space
+        if (*text) { // Check if there's text after space
+            pprint(text);
+        }
+    }
+    pprint("\r\n"); // Ensure newline is printed whether text is present or not
+}
 
+
+
+void print_uptime() {
+    unsigned int total_seconds = get_system_uptime();
+    unsigned int hours = total_seconds / 3600;
+    unsigned int minutes = (total_seconds % 3600) / 60;
+    unsigned int seconds = total_seconds % 60;
+
+    char buffer[50];
+    strcpy(buffer, "Uptime: ");
+    itoa(hours, buffer + strlen(buffer), 10);
+    strcat(buffer, ":");
+    itoa(minutes, buffer + strlen(buffer), 10);
+    strcat(buffer, ":");
+    itoa(seconds, buffer + strlen(buffer), 10);
+    strcat(buffer, "\r\n");
+    pprint(buffer);
+}
+
+void runCommand(char *cmd) {
     pprint("\r\n");
 
-    if(strlen(cmd) == 0)
+    if (strlen(cmd) == 0)
         return;
 
-    if(strcmp(cmd,"hello"))    
+    if (strncmp(cmd, "echo ", 5) == 0) {
+        echo_command(cmd);
+    } else if (strcmp(cmd, "echo") == 0) { 
+        pprint("\r\n");
+    } else if (strcmp(cmd, "hello") == 0) {
         pprint("Welcome to Poulpy-OS !!\r\n");
-
-    else if(strcmp(cmd,"tree")){
+    } else if (strcmp(cmd, "uptime") == 0) {
+        print_uptime();
+    } else if (strcmp(cmd, "tree") == 0) {
         printTree();
-
-    }else if(strcmp(cmd,"Johnny")){
+    } else if (strcmp(cmd, "Johnny") == 0) {
         printLyricText(lyrics);
-
-    }else if(strcmp(cmd,"help")){
-        pprint("Supported command : \r\n - tree \r\n - hello \r\n - Johnny \r\n - help \r\n");
-
-    }else{
+    } else if (strcmp(cmd, "help") == 0) {
+        pprint("Supported commands: \r\n - tree \r\n - hello \r\n - echo \r\n - uptime \r\n - help \r\n");
+    } else {
         pprint("No such command\r\n");
     }
 }
 
-void bash(){
 
-   
+void bash(){
     while (1)
     {   
         //Init
@@ -157,6 +193,4 @@ void bash(){
         runCommand(cmd);
 
     }
-    
-
 }

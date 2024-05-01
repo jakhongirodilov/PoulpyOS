@@ -1,18 +1,39 @@
+// #include "timer.h"
+// #include "../drivers/screen.h"
+// #include "../drivers/ports.h"
+// #include "isr.h"
+
+// uint8_t tick = 0;
+
+// static void timer_callback(registers_t regs) {
+//     tick++;
+
+//     if(tick >= 20){
+//         pprint("Tick");
+//         pprint("\n\r");
+//         tick = 0;
+//     }
+// }
+
 #include "timer.h"
 #include "../drivers/screen.h"
 #include "../drivers/ports.h"
 #include "isr.h"
 
-uint8_t tick = 0;
+static uint32_t system_uptime = 0;  // Uptime in seconds
 
 static void timer_callback(registers_t regs) {
-    tick++;
+    static uint32_t tick_count = 0;
+    tick_count++;
 
-    if(tick >= 20){
-        pprint("Tick");
-        pprint("\n\r");
-        tick = 0;
+    if (tick_count >= 20) {  // Assuming the timer fires 20 times a second
+        system_uptime++;
+        tick_count = 0;
     }
+}
+
+uint32_t get_system_uptime() {
+    return system_uptime;
 }
 
 void init_timer(uint32_t freq) {
