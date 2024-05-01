@@ -32,7 +32,7 @@ void memory_management_demo() {
     pprint("Memory has been freed.\r\n");
 }
 
-void poulpy() {
+void simple() {
     isr_install();
     init_timer(20);
     clearScreen();
@@ -41,7 +41,7 @@ void poulpy() {
     
     changeCurrentColor(MAGENTA);
     pprint("=================================================================\r\n");
-    pprint("====================== Welcome to PoulpyOS ======================\r\n");
+    pprint("====================== Welcome to SimpleOS ======================\r\n");
     pprint("=================================================================\r\n");
     pprint("======= type 'help' to see the list of available commands =======\r\n");
     changeCurrentColor(WHITE);

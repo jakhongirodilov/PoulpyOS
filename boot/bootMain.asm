@@ -1,6 +1,6 @@
 [org 0x7c00]
 ;
-; PoulpyOS Main Boot Sector
+; SimpleOS Main Boot Sector
 ;
 mov ax, 0
 mov es, ax
@@ -61,7 +61,7 @@ BEGIN_PM:
 BOOT_DRIVE db 0 
 
 BOOT_WELCOME:
-	db 13,10,13,10,'=== PoulpyOS - Welcome',13 ,10, 0
+	db 13,10,13,10,'=== SimpleOS - Welcome',13 ,10, 0
 
 BOOT_MSG_1:
     db 'Entering 16 bits mode...', 13, 10, 0

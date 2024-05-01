@@ -11,4 +11,7 @@ char *strcpy(char *dest, const char *src);
 char *strcat(char *dest, const char *src);
 // char *itoa(int value, char *str, int base);
 
+void parse_two_integers(const char* input, int* num1, int* num2);
+int simple_atoi(const char* str, char** endptr);
+
 #endif

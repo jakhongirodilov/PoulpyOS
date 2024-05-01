@@ -37,3 +37,28 @@ char* itoa(int value, char* str, int base) {
     }
     return rc;
 }
+
+char* itoa_simple(int value, char* str) {
+    char* ptr = str;
+    if (value < 0) {
+        *ptr++ = '-';
+        value = -value;
+    }
+
+    char* start = ptr;
+    do {
+        *ptr++ = '0' + (value % 10);
+        value /= 10;
+    } while (value);
+    *ptr-- = '\0';
+
+    // Reverse the number
+    while (start < ptr) {
+        char tmp = *start;
+        *start = *ptr;
+        *ptr = tmp;
+        start++;
+        ptr--;
+    }
+    return str;
+}

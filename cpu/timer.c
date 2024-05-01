@@ -1,20 +1,3 @@
-// #include "timer.h"
-// #include "../drivers/screen.h"
-// #include "../drivers/ports.h"
-// #include "isr.h"
-
-// uint8_t tick = 0;
-
-// static void timer_callback(registers_t regs) {
-//     tick++;
-
-//     if(tick >= 20){
-//         pprint("Tick");
-//         pprint("\n\r");
-//         tick = 0;
-//     }
-// }
-
 #include "timer.h"
 #include "../drivers/screen.h"
 #include "../drivers/ports.h"

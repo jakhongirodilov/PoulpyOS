@@ -1,39 +1,7 @@
 #include "string.h"
 #include "../drivers/screen.h"
+#include "../util/util.h"
 #include <stddef.h>
-
-// char* itoa(int value, char* str, int base) {
-//     char* rc;
-//     char* ptr;
-//     char* low;
-//     // Check for supported base.
-//     if (base < 2 || base > 36) {
-//         *str = '\0';
-//         return str;
-//     }
-//     rc = ptr = str;
-//     // Set '-' for negative decimals.
-//     if (value < 0 && base == 10) {
-//         *ptr++ = '-';
-//     }
-//     // Remember where the numbers start.
-//     low = ptr;
-//     // The actual conversion.
-//     do {
-//         // Modulo is negative for negative value. This trick makes abs() unnecessary.
-//         *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + value % base];
-//         value /= base;
-//     } while (value);
-//     // Terminating the string.
-//     *ptr-- = '\0';
-//     // Invert the numbers.
-//     while (low < ptr) {
-//         char tmp = *low;
-//         *low++ = *ptr;
-//         *ptr-- = tmp;
-//     }
-//     return rc;
-// }
 
 
 int strcmp(const char *first, const char *second) {
@@ -95,3 +63,38 @@ char* strcat(char* dest, const char* src) {
     return saved;
 }
 
+void parse_two_integers(const char* input, int* num1, int* num2) {
+    while (*input && *input == ' ') input++;  // Skip leading spaces
+
+    // Convert the first number
+    char* next_part;
+    *num1 = simple_atoi(input, &next_part);
+
+    while (*next_part && *next_part == ' ') next_part++;  // Skip spaces between numbers
+
+    // Convert the second number
+    *num2 = simple_atoi(next_part, NULL);  // We don't need the end pointer here
+}
+
+int simple_atoi(const char* str, char** endptr) {
+    int result = 0;
+    int sign = 1;
+
+    // Handle negative numbers
+    if (*str == '-') {
+        sign = -1;
+        str++;
+    }
+
+    // Convert number
+    while (*str >= '0' && *str <= '9') {
+        result = result * 10 + (*str - '0');
+        str++;
+    }
+
+    if (endptr) {
+        *endptr = (char *)str;
+    }
+
+    return result * sign;
+}

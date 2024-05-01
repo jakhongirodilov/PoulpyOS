@@ -1,8 +1,8 @@
 global _start;
 
 [bits 32]
-[extern poulpy]
+[extern simple]
 
 _start:
-    call poulpy 
+    call simple 
     jmp $

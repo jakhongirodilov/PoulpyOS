@@ -1,4 +1,3 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
 <img align="middle" src="pic/logo_large.png" width="800"> <br>
 
 ## Description
@@ -6,6 +5,12 @@ A completely custom OS written from scratch, no Linux, no Windows, no nothing. <
 The bootloader is in assembly, and the Kernel written in C.<br> <br>
 <img align="middle" src="pic/pic1.png" width="400"> <img align="middle" src="pic/pic2.png" width="400">
 
+### Devlopers
+- Jakhongir Odilov
+- Azimjon Alijonov
+- Mirjalol Fozilov
+- Diyorbek Rasulov
+- Abrorbek Butaev
 
 ## Testing the OS
 ```console
@@ -39,7 +44,5 @@ user@debian:~$ make debug
 - https://wiki.osdev.org/Expanded_Main_Page
 - https://github.com/cfenollosa/os-tutorial
 - http://www.osdever.net/FreeVGA/vga/crtcreg.htm
-- https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf ( <- Best one )
+- https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf 
 
-
-Crafted with :heart: by mtribiere

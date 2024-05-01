@@ -5,6 +5,7 @@
 #include "../cpu/types.h"
 #include "../cpu/timer.h" 
 #include "../libc/string.h"
+#include "../libc/math.h"
 #include "../util/util.h"
 #include <stddef.h>
 
@@ -150,10 +151,14 @@ void runCommand(char *cmd) {
 
     if (strncmp(cmd, "echo ", 5) == 0) {
         echo_command(cmd);
+    } else if (strncmp(cmd, "add ", 4) == 0) {
+        addition_command(cmd);
+    } else if (strncmp(cmd, "multiply ", 9) == 0) {
+        multiplication_command(cmd);
     } else if (strcmp(cmd, "echo") == 0) { 
         pprint("\r\n");
     } else if (strcmp(cmd, "hello") == 0) {
-        pprint("Welcome to Poulpy-OS !!\r\n");
+        pprint("Welcome to SimpleOS !!\r\n");
     } else if (strcmp(cmd, "uptime") == 0) {
         print_uptime();
     } else if (strcmp(cmd, "tree") == 0) {
@@ -161,7 +166,7 @@ void runCommand(char *cmd) {
     } else if (strcmp(cmd, "Johnny") == 0) {
         printLyricText(lyrics);
     } else if (strcmp(cmd, "help") == 0) {
-        pprint("Supported commands: \r\n - tree \r\n - hello \r\n - echo \r\n - uptime \r\n - help \r\n");
+        pprint("Supported commands: \r\n - echo \r\n - hello \r\n - tree  \r\n - uptime \r\n - mathematical functions: add, multiply \r\n - help \r\n");
     } else {
         pprint("No such command\r\n");
     }

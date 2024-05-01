@@ -1,5 +1,5 @@
 #
-# MAKEFILE FOR POULPY-OS
+# MAKEFILE FOR simple-OS
 #
 
 # Set source dirs
@@ -17,13 +17,13 @@ CFLAGS = -Wall -g -std=c99 -ffreestanding -Iinclude -Iutil
 
 
 #Set names
-IMG=poulpyOS.img
-ISO=poulpyOS.iso
+IMG=simpleOS.img
+ISO=simpleOS.iso
 
-all: poulpyOS
+all: simpleOS
 
 #Build rules 
-poulpyOS: $(IMG)
+simpleOS: $(IMG)
 
 $(IMG): bootMain.bin kernel.bin
 	dd if=boot/bootMain.bin of=$(IMG) conv=notrunc bs=512 seek=0 count=1
