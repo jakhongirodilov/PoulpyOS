@@ -6,11 +6,11 @@ The bootloader is in assembly, and the Kernel written in C.<br> <br>
 <img align="middle" src="pic/pic1.png" width="400"> <img align="middle" src="pic/pic2.png" width="400">
 
 ### Developers
-- Jakhongir Odilov
-- Azimjon Alijonov
-- Mirjalol Fozilov
-- Diyorbek Rasulov
-- Abrorbek Butaev
+- Jakhongir Odilov (210057)
+- Azimjon Alijonov (210040)
+- Mirjalol Fozilov (210138)
+- Diyorbek Rasulov (210179)
+- Abrorbek Butaev (210120)
 
 ## Testing the OS
 ```console
